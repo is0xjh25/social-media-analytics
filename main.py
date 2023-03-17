@@ -16,7 +16,7 @@ def main():
 	sal_dict = utility.create_sal_dict(sal_data)
 	# City dict
 	gcc_count = {'1gsyd': 0, '2gmel': 0, '3gbri': 0, '4gade': 0, 
-				'5gper': 0, '6ghob': 0, '7gdar': 0, '8acte': 0 }
+				'5gper': 0, '6ghob': 0, '7gdar': 0, '8acte': 0, '9oter': 0}
 
 	user_record = {}
 

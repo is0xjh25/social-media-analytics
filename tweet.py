@@ -34,8 +34,9 @@ def read_loc(location, sal_dict) -> str:
 		'South Australia': ('(sa)', '4gade'),
 		'Western Australia': ('(wa)', '5gper'),
 		'Tasmania': ('(tas.)', '6ghob'),
-		'Northern Territory': ('(nt)', '7gdar') ,
-		'Australian Capital Territory': ('(act)', '8acte')
+		'Northern Territory': ('(nt)', '7gdar'),
+		'Australian Capital Territory': ('(act)', '8acte'),
+		'Great Other Territories': ('(oter)', '9oter')
 	}
 
 	city = {
