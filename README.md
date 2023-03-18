@@ -1,7 +1,7 @@
 # Social Media Analytics
  
 ## Task & Requirements
-The task in this programming assignment is to implement a parallelized application leveraging the University of Melbourne HPC facility SPARTAN. The application will use a large Twitter dataset and a file containing the suburbs, locations and Greater Capital cities of Australia. Your objective is to:\
+The task in this programming assignment is to implement a parallelized application leveraging the University of Melbourne HPC facility SPARTAN. The application will use a large Twitter dataset and a file containing the suburbs, locations and Greater Capital cities of Australia. The objective is to:\
 • **count the number of different tweets made in the Greater Capital cities of Australia,**\
 • **identify the Twitter accounts (users) that have made the most tweets,**\
 • **identify the users that have tweeted from the most different Greater Capital cities.**
