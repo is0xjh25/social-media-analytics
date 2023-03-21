@@ -25,6 +25,25 @@ def main():
 		# multi-threading...
 		tweet.analyse(i, user_record, gcc_count, sal_dict)
 	
+	# print(user_record)
+	sorted_gcc_count = sorted(gcc_count.items(), key=lambda x:x[1],reverse=True)
+
+	print("city_Count")
+	print()
+	print(sorted_gcc_count)
+	sorted_total_user = sorted(user_record.items(), key=lambda x: x[1]['tweet_count'], reverse=True)[0:10]
+
+	print()
+	print("total_count")
+	print()
+	print(sorted_total_user)
+	sorted_uniquecity_user = sorted(user_record.items(), key=lambda x: x[1]['unique_city'], reverse=True)[0:10]
+
+	print()
+	print("unique city count")
+	print()
+	print(sorted_uniquecity_user)
+	
 	# Closing file
 	tt.close()
 	sal.close()
