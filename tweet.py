@@ -1,6 +1,5 @@
 # Analyse a single tweet
-def analyse(tweet, user_record, gcc_count, sal_data) -> None:
-	
+def analyse(tweet:{}, user_record:{}, gcc_count:{}, sal_dict:{}) -> ({}, {}):
 	user_id = tweet['data']['author_id']
 
 	# If user has been recorded
@@ -13,7 +12,7 @@ def analyse(tweet, user_record, gcc_count, sal_data) -> None:
 	
 	# Handle reading location
 	location = tweet['includes']['places'][0]['full_name']
-	location = read_loc(location, sal_data)
+	location = read_loc(location, sal_dict)
 	
 	# Add a new great capital city
 	if len(location) != 0:
@@ -22,10 +21,10 @@ def analyse(tweet, user_record, gcc_count, sal_data) -> None:
 		user[location] += 1
 		gcc_count[location] += 1
 
-	return
+	return (user_record, gcc_count)
 
 # Read the location
-def read_loc(location, sal_dict) -> str:
+def read_loc(location:str, sal_dict:{}) -> str:
 
 	gcc = {
 		'New South Wales': ('(nsw)', '1gsyd'),
@@ -53,7 +52,6 @@ def read_loc(location, sal_dict) -> str:
 
 	if len(loc) < 2:
 		location = ""
-
 	elif loc[1] in city:
 		location = city[loc[1]]
 	elif loc[1] in gcc:
@@ -79,7 +77,8 @@ def create_user() -> {}:
 		'5gper': 0,
 		'6ghob': 0,
 		'7gdar': 0,
-		'8acte': 0
+		'8acte': 0,
+		'9oter': 0,
 	}
 
 	return user
