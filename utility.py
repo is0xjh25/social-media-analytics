@@ -18,7 +18,6 @@ def combine_gcc_count(gcc_count:[{}]) -> {}:
 	return res
 
 def combine_tweet_count(tweet_count, max_rank:int) -> {}:
-	# res = {{"123": {'rank':1, 'tweet_count':200}, {}}
 	tweet_count = sorted(tweet_count.items(), key=lambda x: x[1]['tweet_count'], reverse=True)
 	res = {}
 	count = 1
@@ -109,22 +108,22 @@ def sort_unique_gcc_count(data:{}, max_rank:int) -> {}:
 
 # Print out format
 def print_gcc_count(res:{}) -> None:
-	print("GCC Ranking")
-	print("{:<21} {:<21}".format("Greater Capital City", "Number of Tweets Made"))
+	print("<< GCC Count (Task 1) >>")
+	print("{:<21} {:<22}".format("Greater Capital City", "Number of Tweets Made"))
 	for key, val in res.items():
-		print("{:<21} {:<21}".format(key, val))
+		print("{:<21} {:<22}".format(key, val))
 	return None
 
 def print_tweet_count(res:{}) -> None:
-	print("Author Ranking")
-	print("{:<5} {:<25} {:<15}".format("Rank", "Author Id", "Number of Tweets Made"))
+	print("<< Author Ranking (Task 2) >>")
+	print("{:<5} {:<20} {:<22}".format("Rank", "Author Id", "Number of Tweets Made"))
 	for key, val in res.items():
-		print("{:<5} {:<25} {:<15}".format(val['rank'], key, val['tweet_count']))
+		print("{:<5} {:<20} {:<22}".format(val['rank'], key, val['tweet_count']))
 	return None
 
 def print_unique_gcc_count(res:{}) -> None:
-	print("Unique GCC Ranking")
-	print("{:<5} {:<25} {:<43}".format("Rank", "Author Id", "Number of Unique City Locations and #Tweets"))
+	print("<< Unique GCC Ranking (Task 3) >>")
+	print("{:<5} {:<20} {:<44}".format("Rank", "Author Id", "Number of Unique City Locations and #Tweets"))
 	for key, val in res.items():
-		print("{:<5} {:<25} {:<43}".format(val['rank'], key, val['res']))
+		print("{:<5} {:<20} {:<44}".format(val['rank'], key, val['res']))
 	return None

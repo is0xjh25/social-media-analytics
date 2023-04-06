@@ -25,7 +25,6 @@ def analyse(req:(str, str), user_record:{}, gcc_count:{}, sal_dict:{}) -> ({}, {
 
 # Read the location
 def read_loc(location:str, sal_dict:{}) -> str:
-
 	gcc = {
 		'New South Wales': ('(nsw)', '1gsyd'),
 		'Victoria': ('(vic.)', '2gmel'),
