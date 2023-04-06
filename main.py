@@ -33,19 +33,11 @@ def master_tweet_processor(comm, sal_dict, data_url) -> None:
 		for record in ijson.items(f, 'item', multiple_values=True):
 			user_id = record['data']['author_id']
 			location = record['includes']['places'][0]['full_name']
-			divide = 0
 			if size == 1:
 				user_record, gcc_count = tweet.analyse((user_id, location), user_record, gcc_count, sal_dict)
 			else:
-				# Assign task into different nodes based on the last numeber of user_id
-				if (user_id[-1].isdigit()):
-					divide = int(user_id[-1])%size
-				else:
-					divide = ord(user_id[-1])%size
-				if divide == 0:
-					master_work.append((user_id, location))
-				else:
-					req = comm.send((user_id, location), dest=divide, tag=divide)
+				distribute = int(user_id)%(size-1) + 1
+				req = comm.send((user_id, location), dest=distribute, tag=distribute)
 	# Master's own task
 	for index, t in enumerate(master_work):
 		user_record, gcc_count = tweet.analyse(t, user_record, gcc_count, sal_dict)
