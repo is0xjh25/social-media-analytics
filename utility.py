@@ -10,27 +10,53 @@ def create_sal_dict(sal_data) -> {}:
 	return sal_dict
 
 # Collect data
-def combine_gcc_count(gcc_count:{}, dict:{}) -> None:
-	for key, value in dict.items():
-		gcc_count[key] += value 
-	return None
+def combine_gcc_count(gcc_count:[{}]) -> {}:
+	res = {'1gsyd': 0, '2gmel': 0, '3gbri': 0, '4gade': 0, '5gper': 0,'6ghob': 0, '7gdar': 0, '8acte': 0, '9oter': 0}
+	for i in gcc_count:
+		for key, value in i.items():
+			res[key] += value 
+	return res
 
-def combine_user_record(user_record:{}, dict:{}) -> None:
-	for key, value in dict.items():
-		if key in user_record:
-			unique_city_count = 0
-			for v in value:
-				user_record[key][v] += value[v]
-				if v in gcc and user_record[key][v] > 0:
-					unique_city_count += 1
-			user_record[key]['unique_city'] = unique_city_count
+def combine_tweet_count(tweet_count, max_rank:int) -> {}:
+	# res = {{"123": {'rank':1, 'tweet_count':200}, {}}
+	tweet_count = sorted(tweet_count.items(), key=lambda x: x[1]['tweet_count'], reverse=True)
+	res = {}
+	count = 1
+	rank = 0
+	for index, user in enumerate(tweet_count):
+		if index == 0:
+			rank += 1
 		else:
-			pass 
-	return None
+			if tweet_count[index-1][1]['tweet_count'] == user[1]['tweet_count']:
+				count += 1
+			else:
+				rank += count
+				if rank > max_rank: break
+				count = 1
+		res[user[0]] = {'rank': rank, 'tweet_count': user[1]['tweet_count']}
+	return res
 
+def combine_unique_gcc_count(unique_gcc_count, max_rank:int) -> {}:
+	# res = {{"123": {'rank':1, 'res': "6 (#54 tweets - 9gsyd, 9gmel, 9gbri, 9gade, 9gper, 9ghob)"}, {}}
+	unique_gcc_count = sorted(unique_gcc_count.items(), key=lambda x: x[1]['res'][0], reverse=True)
+	res = {}
+	count = 1
+	rank = 0
+	for index, user in enumerate(unique_gcc_count):
+		if index == 0:
+			rank += 1
+		else:
+			if unique_gcc_count[index-1][1]['res'][0] == user[1]['res'][0]:
+				count += 1
+			else:
+				rank += count
+				if rank > max_rank: break
+				count = 1
+		res[user[0]] = {'rank': rank, 'res': user[1]['res']}
+	return res
 
 # Sorting
-def sort_author_count(data:{}, max_rank:int) -> {}:
+def sort_tweet_count(data:{}, max_rank:int) -> {}:
 	data = sorted(data.items(), key=lambda x: x[1]['tweet_count'], reverse=True)
 	res = {}
 	count = 1
@@ -78,7 +104,7 @@ def sort_unique_gcc_count(data:{}, max_rank:int) -> {}:
 				recorded = True
 
 		temp = "{}(#{} tweets -{})".format(data[index][1]['unique_city'], tweet_count, gcc_str)
-		res[user[0]] = {'rank': rank,'res': temp}
+		res[user[0]] = {'rank': rank, 'res': temp}
 	return res
 
 # Print out format
@@ -89,7 +115,7 @@ def print_gcc_count(res:{}) -> None:
 		print("{:<21} {:<21}".format(key, val))
 	return None
 
-def print_author_count(res:{}) -> None:
+def print_tweet_count(res:{}) -> None:
 	print("Author Ranking")
 	print("{:<5} {:<25} {:<15}".format("Rank", "Author Id", "Number of Tweets Made"))
 	for key, val in res.items():

@@ -1,7 +1,8 @@
 # Analyse a single tweet
-def analyse(tweet:{}, user_record:{}, gcc_count:{}, sal_dict:{}) -> ({}, {}):
-	user_id = tweet['data']['author_id']
-
+def analyse(req:(str, str), user_record:{}, gcc_count:{}, sal_dict:{}) -> ({}, {}):
+	user_id = req[0]
+	location = req[1]
+	
 	# If user has been recorded
 	if user_id in user_record:
 		user = user_record[user_id]
@@ -11,16 +12,15 @@ def analyse(tweet:{}, user_record:{}, gcc_count:{}, sal_dict:{}) -> ({}, {}):
 		user_record[user_id] = user
 	
 	# Handle reading location
-	location = tweet['includes']['places'][0]['full_name']
 	location = read_loc(location, sal_dict)
-	
+
 	# Add a new great capital city
 	if len(location) != 0:
 		if user[location] == 0:
 			user['unique_city'] += 1
 		user[location] += 1
 		gcc_count[location] += 1
-
+	
 	return (user_record, gcc_count)
 
 # Read the location
