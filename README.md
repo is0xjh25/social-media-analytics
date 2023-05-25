@@ -12,8 +12,4 @@ The application should allow a given number of nodes and cores to be utilized. S
 • **2 nodes and 8 cores (with 4 cores per node).**
 
 ***
-### Command Line
-`python3 main.py`
-
-***
 _more details in project specification!_
