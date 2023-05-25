@@ -14,8 +14,6 @@ The application should allow a given number of nodes and cores to be utilized. S
 ***
 ### Command Line
 `python3 main.py`
-  
-### Example Output
 
 ***
 _more details in project specification!_
