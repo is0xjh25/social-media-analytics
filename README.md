@@ -12,4 +12,4 @@ The application should allow a given number of nodes and cores to be utilized. S
 • **2 nodes and 8 cores (with 4 cores per node).**
 
 ***
-_more details in project specification!_
+_*more details in [project specification](https://github.com/is0xjh25/social-media-analytics/blob/main/Assignment1.pdf)_
